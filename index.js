@@ -24,6 +24,23 @@ if(settings.useHttp == true) {
     server.start();
 
     _Server = server;
+
+    // * VChat (Video Chat) signaling handlers
+    server.io.on('connection', (socket) => {
+        socket.on('vchat_signal', (data) => {
+            // Forward WebRTC signal to target player
+            if (data.to) {
+                server.io.to(data.to).emit('vchat_signal', data);
+            }
+        });
+
+        socket.on('vchat_end', (data) => {
+            // Notify target player that call has ended
+            if (data.to) {
+                server.io.to(data.to).emit('vchat_end', data);
+            }
+        });
+    });
 }
 
 // * HTTPS
@@ -34,4 +51,21 @@ if(settings.useSSL == true) {
     server.start();
 
     _Server2 = server;
+
+    // * VChat (Video Chat) signaling handlers
+    server.io.on('connection', (socket) => {
+        socket.on('vchat_signal', (data) => {
+            // Forward WebRTC signal to target player
+            if (data.to) {
+                server.io.to(data.to).emit('vchat_signal', data);
+            }
+        });
+
+        socket.on('vchat_end', (data) => {
+            // Notify target player that call has ended
+            if (data.to) {
+                server.io.to(data.to).emit('vchat_end', data);
+            }
+        });
+    });
 }
