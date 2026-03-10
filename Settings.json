@@ -1,7 +1,7 @@
 {
     "useHttp": true,
     "port": 3034,
-    "useSSL": true,
+    "useSSL": false,
     "portForSSL": 3035,
     "configuration": {
         "filteredRooms": true,
