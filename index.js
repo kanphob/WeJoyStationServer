@@ -27,17 +27,27 @@ if(settings.useHttp == true) {
 
     // * VChat (Video Chat) signaling handlers
     server.io.on('connection', (socket) => {
+        console.log('[VChat] Player connected to VChat layer: ' + socket.id);
+
         socket.on('vchat_signal', (data) => {
+            console.log('[VChat] vchat_signal from ' + socket.id + ' to ' + (data.to || 'unknown'));
             // Forward WebRTC signal to target player
             if (data.to) {
                 server.io.to(data.to).emit('vchat_signal', data);
+                console.log('[VChat] vchat_signal forwarded to ' + data.to);
+            } else {
+                console.warn('[VChat] vchat_signal missing "to" field, not forwarded.');
             }
         });
 
         socket.on('vchat_end', (data) => {
+            console.log('[VChat] vchat_end from ' + socket.id + ' to ' + (data.to || 'unknown'));
             // Notify target player that call has ended
             if (data.to) {
                 server.io.to(data.to).emit('vchat_end', data);
+                console.log('[VChat] vchat_end forwarded to ' + data.to);
+            } else {
+                console.warn('[VChat] vchat_end missing "to" field, not forwarded.');
             }
         });
     });
@@ -54,17 +64,27 @@ if(settings.useSSL == true) {
 
     // * VChat (Video Chat) signaling handlers
     server.io.on('connection', (socket) => {
+        console.log('[VChat SSL] Player connected to VChat layer: ' + socket.id);
+
         socket.on('vchat_signal', (data) => {
+            console.log('[VChat SSL] vchat_signal from ' + socket.id + ' to ' + (data.to || 'unknown'));
             // Forward WebRTC signal to target player
             if (data.to) {
                 server.io.to(data.to).emit('vchat_signal', data);
+                console.log('[VChat SSL] vchat_signal forwarded to ' + data.to);
+            } else {
+                console.warn('[VChat SSL] vchat_signal missing "to" field, not forwarded.');
             }
         });
 
         socket.on('vchat_end', (data) => {
+            console.log('[VChat SSL] vchat_end from ' + socket.id + ' to ' + (data.to || 'unknown'));
             // Notify target player that call has ended
             if (data.to) {
                 server.io.to(data.to).emit('vchat_end', data);
+                console.log('[VChat SSL] vchat_end forwarded to ' + data.to);
+            } else {
+                console.warn('[VChat SSL] vchat_end missing "to" field, not forwarded.');
             }
         });
     });
