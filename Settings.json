@@ -4,7 +4,7 @@
     "useSSL": true,
     "portForSSL": 3035,
     "configuration": {
-        "filteredRooms": false,
-        "chatTrace": false
+        "filteredRooms": true,
+        "chatTrace": true
     }
 }
