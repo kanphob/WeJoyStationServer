@@ -1,0 +1,3 @@
+ls - current directory files list
+cd - to folder with server
+node index.js - start (when in folder)

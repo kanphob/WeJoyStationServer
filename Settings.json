@@ -1,0 +1,10 @@
+{
+    "useHttp": true,
+    "port": 3034,
+    "useSSL": false,
+    "portForSSL": 3035,
+    "configuration": {
+        "filteredRooms": false,
+        "chatTrace": false
+    }
+}
